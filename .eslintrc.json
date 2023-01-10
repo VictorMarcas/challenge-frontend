@@ -6,7 +6,7 @@
     },
     "extends": [
         "plugin:vue/vue3-essential",
-        "standard",
+        "standard-with-typescript",
         "prettier"
     ],
     "overrides": [
@@ -19,5 +19,6 @@
         "vue"
     ],
     "rules": {
+        
     }
 }
