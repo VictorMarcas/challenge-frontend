@@ -1,6 +1,10 @@
 <script setup>
-import Button from '@/components/atoms/Button.vue'
+import UserCapsule from '@/components/molecules/UserCapsule.vue'
 </script>
 <template>
-  <Button type="button">Button Primary</Button>
+  <div class="flex flex-col items-center justify-center h-full py-2">
+    <div class="max-w-sm">
+      <UserCapsule />
+    </div>
+  </div>
 </template>

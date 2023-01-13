@@ -1,7 +1,13 @@
+<script setup>
+import Header from '@/components/sections/Header.vue'
+import Footer from '@/components/sections/Footer.vue'
+</script>
 <template>
-  <div
-    class="flex items-center justify-center w-full h-screen grid-cols-1 bg-gray-100"
-  >
-    <slot />
-  </div>
+  <main class="flex flex-col h-screen min-h-screen">
+    <Header />
+    <div class="flex-1">
+      <NuxtPage />
+    </div>
+    <Footer />
+  </main>
 </template>
