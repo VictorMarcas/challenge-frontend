@@ -21,9 +21,9 @@ defineProps({
     default: 'center',
     validator: (value) => ['left', 'center', 'right'].includes(value),
   },
-  disabled: {
-    type: Boolean,
-    default: false,
+  to: {
+    type: String,
+    default: '',
   },
   icon: {
     type: String,
@@ -39,15 +39,14 @@ defineProps({
 const Icon = defineAsyncComponent(() => import('@/components/atoms/Icon.vue'))
 </script>
 <template>
-  <button
-    :disabled="disabled"
+  <NuxtLink
+    :to="to"
     :class="
       buttonStyles({
         intent,
         fullWidth,
         size,
         alignment,
-        disabled,
         iconPosition,
       })
     "
@@ -56,5 +55,5 @@ const Icon = defineAsyncComponent(() => import('@/components/atoms/Icon.vue'))
       <Icon :name="icon" class="shrink-0" />
     </template>
     <slot />
-  </button>
+  </NuxtLink>
 </template>
