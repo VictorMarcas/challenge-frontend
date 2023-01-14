@@ -8,12 +8,13 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icons',
     '@nuxt/image-edge',
+    '@pinia/nuxt',
   ],
   tailwindcss: tailwindConfig,
   googleFonts: googleFontsConfig,
   runtimeConfig: {
     public: {
-      api_baseURL: process.env.API_BASE_URL,
+      apiBaseUrl: 'https://api-challenge-talently.vercel.app/api',
     },
   },
 })

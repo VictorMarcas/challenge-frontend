@@ -7,6 +7,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "overrides": {
+    "vue": "latest"
+  },
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
     "@nuxtjs/google-fonts": "^3.0.0-1",
@@ -28,6 +31,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.7",
     "@pinia/nuxt": "^0.4.6",
-    "class-variance-authority": "^0.4.0"
+    "class-variance-authority": "^0.4.0",
+    "pinia": "^2.0.28"
   }
 }
