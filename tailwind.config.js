@@ -8,6 +8,7 @@ module.exports = {
     './pages/**/*.vue',
     './assets/**/*.svg',
     './plugins/**/*.{js,ts}',
+    './shared/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
   theme: {
@@ -43,6 +44,14 @@ module.exports = {
         7: 7,
         8: 8,
         9: 9,
+      },
+      animation: {
+        shimmer: 'shimmer 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+      },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
     },
     screens: breakpoints,
