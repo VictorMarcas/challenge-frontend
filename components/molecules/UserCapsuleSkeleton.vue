@@ -2,7 +2,7 @@
 import Skeleton from '@/components/shared/Skeleton.vue'
 </script>
 <template>
-  <article class="flex items-center gap-6 p-3 rounded-md bg-gray-100/50">
+  <article class="flex items-center w-full gap-6 p-3 rounded-md bg-gray-100/50">
     <div class="flex items-center flex-1 w-full gap-3">
       <Skeleton width="w-20" height="h-20" />
       <div aria-label="description" class="flex-1 w-full">
