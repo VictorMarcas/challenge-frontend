@@ -1,22 +1,28 @@
 <script setup>
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
 import SocialButton from '@/components/atoms/SocialButton.vue'
 import Icon from '@/components/atoms/Icon.vue'
 import Button from '@/components/atoms/Button.vue'
 import ButtonLink from '@/components/atoms/ButtonLink.vue'
+defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+})
 </script>
 <template>
   <article class="flex items-center gap-6 p-3 rounded-md bg-gray-100/50">
-    <div class="flex items-center gap-3">
+    <div class="flex items-center flex-1 gap-3">
       <img
         loading="lazy"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+        :src="user.avatar"
         class="object-cover object-center w-20 border-4 border-white rounded-full aspect-square shrink-0"
         aria-label="profile photo"
       />
       <div aria-label="description" class="flex-1">
         <h4 class="text-base font-bold text-primary-900">
-          Maria Martinez Savedra
+          {{ user.name }} {{ user.last_name }}
         </h4>
         <p class="text-sm text-gray-500">Ux Designer</p>
         <ul arial-label="social network" class="flex items-center gap-2 mt-3">
@@ -66,27 +72,24 @@ import ButtonLink from '@/components/atoms/ButtonLink.vue'
           <MenuItems
             class="absolute right-0 w-40 px-2 py-3 space-y-1 bg-white border rounded-lg border-slate-50 z-2 focus:outline-none"
           >
-            <MenuItem>
-              <ButtonLink
-                to="/edit/1"
-                intent="minimal"
-                size="sm"
-                icon="interface/edit"
-                alignment="left"
-                full-width
-                >Edit</ButtonLink
-              >
-            </MenuItem>
-            <MenuItem>
-              <Button
-                intent="minimal"
-                size="sm"
-                icon="interface/bin"
-                alignment="left"
-                full-width
-                >Eliminar</Button
-              >
-            </MenuItem>
+            <ButtonLink
+              to="/edit/1"
+              intent="minimal"
+              size="sm"
+              icon="interface/edit"
+              alignment="left"
+              full-width
+              >Edit</ButtonLink
+            >
+
+            <Button
+              intent="minimal"
+              size="sm"
+              icon="interface/bin"
+              alignment="left"
+              full-width
+              >Eliminar</Button
+            >
           </MenuItems>
         </transition>
       </Menu>
