@@ -11,7 +11,6 @@ defineProps({
     required: true,
   },
 })
-
 const { deleteUser } = useUsers()
 const handleDeleteUser = (id) => {
   deleteUser(id)
@@ -31,6 +30,11 @@ const handleDeleteUser = (id) => {
           {{ user.name }} {{ user.last_name }}
         </h4>
         <p class="text-sm text-gray-500">{{ user.profession }}</p>
+        <NuxtLink
+          :to="`/detail/${user.id}`"
+          class="inline-block px-2 py-0.5 bg-primary-700/10 rounded text-xs font-semibold text-primary-700/60"
+          >Ver detalle</NuxtLink
+        >
         <ul arial-label="social network" class="flex items-center gap-2 mt-3">
           <li v-if="user.linkedin">
             <SocialButton
@@ -78,16 +82,15 @@ const handleDeleteUser = (id) => {
           <MenuItems
             class="absolute right-0 w-40 px-2 py-3 space-y-1 bg-white border rounded-lg border-slate-50 z-2 focus:outline-none"
           >
-            <ButtonLink
-              :to="`/editar/${user.id}`"
+            <Button
               intent="minimal"
               size="sm"
               icon="interface/edit"
               alignment="left"
               full-width
-              >Edit</ButtonLink
+              disabled
+              >Edit</Button
             >
-
             <Button
               intent="minimal"
               size="sm"

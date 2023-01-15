@@ -26,7 +26,7 @@ export const buttonStyles = cva(
         right: 'justify-end',
       },
       disabled: {
-        true: 'disabled:bg-gray-300 disabled:opacity-90 disabled:cursor-default',
+        true: 'disabled:bg-gray-100 disabled:opacity-50 disabled:cursor-default',
       },
       size: {
         sm: 'px-2 py-1 text-sm rounded [&>span]:h-4',

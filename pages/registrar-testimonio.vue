@@ -6,6 +6,8 @@ import Label from '@/components/atoms/Label.vue'
 import Textarea from '@/components/atoms/Textarea.vue'
 import Helper from '@/components/atoms/Helper.vue'
 import Button from '@/components/atoms/Button.vue'
+import ButtonLink from '@/components/atoms/ButtonLink.vue'
+import Loading from '@/components/atoms/Loading.vue'
 const form = reactive({
   avatar: '',
   company_logo: '',
@@ -18,7 +20,7 @@ const form = reactive({
   testimony: '',
 })
 
-const { addUser } = useUsers()
+const { addUser, loading } = useUsers()
 
 const handleSubmit = () => {
   addUser(form)
@@ -40,7 +42,10 @@ const handleSubmit = () => {
         <section class="py-6">
           <form @submit.prevent="handleSubmit" class="space-y-6">
             <fieldset class="px-6 py-6 rounded-lg bg-gray-50">
-              <div class="flex items-center gap-4" aria-label="avatar">
+              <div
+                class="flex flex-col items-center justify-center gap-4 md:justify-start md:flex-row"
+                aria-label="avatar"
+              >
                 <div
                   class="w-20 h-20 overflow-hidden bg-gray-100 rounded-full ring-2 ring-gray-300 shrink-0"
                 >
@@ -67,7 +72,7 @@ const handleSubmit = () => {
               </div>
             </fieldset>
             <fieldset class="px-6 py-6 rounded-lg bg-gray-50">
-              <div class="grid grid-cols-2 gap-6">
+              <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <Label for="name">Nombre</Label>
                   <Input id="name" type="text" required v-model="form.name" />
@@ -81,7 +86,7 @@ const handleSubmit = () => {
                     v-model="form.last_name"
                   />
                 </div>
-                <div class="col-span-2">
+                <div class="md:col-span-2">
                   <Label for="profession">Profesión</Label>
                   <Input
                     id="profession"
@@ -147,8 +152,13 @@ const handleSubmit = () => {
                     v-model="form.testimony"
                   ></Textarea>
                 </div>
-                <div>
-                  <Button type="submit">Registrar testimonio</Button>
+                <div class="flex flex-col gap-4 md:flex-row">
+                  <Button type="submit" :disabled="loading"
+                    >Registrar testimonio <Loading v-if="loading"
+                  /></Button>
+                  <ButtonLink to="/" intent="minimal"
+                    >Regresar a listado</ButtonLink
+                  >
                 </div>
               </div>
             </fieldset>

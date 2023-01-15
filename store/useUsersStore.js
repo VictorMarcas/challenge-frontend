@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import { getUsers, deleteUser, getDetailUser, addUser } from '@/services/api'
-
 export const useUsersStore = defineStore('users', {
   state: () => ({
     users: [],
     user: {},
+    loading: false,
   }),
   actions: {
     async fetchUsers() {
@@ -22,8 +22,15 @@ export const useUsersStore = defineStore('users', {
       this.user = result
     },
     async addUser(user) {
-      const { result } = await addUser(user)
-      console.log(result)
+      this.loading = true
+      try {
+        const { success } = await addUser(user)
+        if (success) {
+          this.loading = false
+        }
+      } catch (error) {
+        this.loading = false
+      }
     },
   },
 })

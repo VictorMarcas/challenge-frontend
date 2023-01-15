@@ -2,7 +2,7 @@
 import Icon from '@/components/atoms/Icon.vue'
 </script>
 <template>
-  <header class="py-4 shrink-0">
+  <header class="py-4 shrink-0 bg-gray-50">
     <div class="container flex items-center justify-center">
       <Icon name="domain/talently" class="h-8 auto" />
     </div>

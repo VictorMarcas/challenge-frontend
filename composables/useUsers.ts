@@ -2,7 +2,7 @@ import { storeToRefs } from 'pinia'
 import { useUsersStore } from '@/store/useUsersStore'
 export const useUsers = () => {
   const usersStore = useUsersStore()
-  const { users, user } = storeToRefs(usersStore)
+  const { users, user, loading } = storeToRefs(usersStore)
 
   const getUsers = async () => {
     await usersStore.fetchUsers()
@@ -20,5 +20,5 @@ export const useUsers = () => {
     await usersStore.addUser(user)
   }
 
-  return { users, user, getUsers, deleteUser, detailUser, addUser }
+  return { users, user, getUsers, deleteUser, detailUser, addUser, loading }
 }
