@@ -26,12 +26,7 @@ onMounted(() => {
         <UserCapsuleSkeleton v-for="(_, index) in 8" :key="index" />
       </template>
       <template v-else>
-        <UserCapsule
-          v-for="user in users"
-          :key="user.id"
-          :user="user"
-          @handleOpenDetail="openDetailUser"
-        />
+        <UserCapsule v-for="user in users" :key="user.id" :user="user" />
       </template>
     </div>
   </section>
