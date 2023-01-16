@@ -4,7 +4,6 @@ export const useUsersStore = defineStore('users', {
   state: () => ({
     users: [],
     user: {},
-    loading: false,
   }),
   actions: {
     async fetchUsers() {
@@ -22,14 +21,9 @@ export const useUsersStore = defineStore('users', {
       this.user = result
     },
     async addUser(user) {
-      this.loading = true
-      try {
-        const { success } = await addUser(user)
-        if (success) {
-          this.loading = false
-        }
-      } catch (error) {
-        this.loading = false
+      const { success } = await addUser(user)
+      if (success) {
+        this.users = [...this.users, user]
       }
     },
   },

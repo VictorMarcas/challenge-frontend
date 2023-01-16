@@ -1,29 +1,52 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useUsers } from '@/composables/useUsers'
 import Input from '@/components/atoms/Input.vue'
+import InputError from '@/components/atoms/InputError.vue'
 import Label from '@/components/atoms/Label.vue'
 import Textarea from '@/components/atoms/Textarea.vue'
 import Helper from '@/components/atoms/Helper.vue'
 import Button from '@/components/atoms/Button.vue'
 import ButtonLink from '@/components/atoms/ButtonLink.vue'
 import Loading from '@/components/atoms/Loading.vue'
+import { useRouter } from 'vue-router'
 const form = reactive({
-  avatar: '',
-  company_logo: '',
-  name: '',
-  last_name: '',
-  twitter: '',
-  linkedin: '',
-  github: '',
-  profession: '',
-  testimony: '',
+  avatar:
+    'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+  company_logo: 'https://static-talently.s3.amazonaws.com/ml_c64641ebaa.png',
+  name: 'Eduardo',
+  last_name: 'Cardenas Santiago',
+  twitter: 'https://twitter.com/TalentlyTech',
+  linkedin: 'https://www.linkedin.com/school/talentlytech',
+  github: 'https://github.com/Talently-Oficial',
+  profession: 'Fronted Developer',
+  testimony: '1',
 })
+const loading = ref(false)
+const { addUser } = useUsers()
+const router = useRouter()
+const errors = ref({})
 
-const { addUser, loading } = useUsers()
+const handleSubmit = async () => {
+  loading.value = true
+  errors.value = []
+  await addUser(form)
+    .then(() => {
+      router.push('/')
+    })
+    .catch((error) => {
+      const {
+        response: { _data },
+      } = error
 
-const handleSubmit = () => {
-  addUser(form)
+      _data.errors.forEach((error) => {
+        const { param, msg } = error
+        errors.value[param] = msg
+      })
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 </script>
 
@@ -65,6 +88,7 @@ const handleSubmit = () => {
                     required
                     v-model="form.avatar"
                   />
+                  <InputError v-if="errors.avatar" :label="errors.avatar" />
                   <Helper
                     label="Ingresa una URL válida para tu foto. Ejemplo: https://example.com/images/myphoto.jpg"
                   />
@@ -85,6 +109,10 @@ const handleSubmit = () => {
                     required
                     v-model="form.last_name"
                   />
+                  <InputError
+                    v-if="errors.last_name"
+                    :label="errors.last_name"
+                  />
                 </div>
                 <div class="md:col-span-2">
                   <Label for="profession">Profesión</Label>
@@ -93,6 +121,10 @@ const handleSubmit = () => {
                     type="text"
                     required
                     v-model="form.profession"
+                  />
+                  <InputError
+                    v-if="errors.profession"
+                    :label="errors.profession"
                   />
                 </div>
               </div>
@@ -108,6 +140,7 @@ const handleSubmit = () => {
                     required
                     v-model="form.github"
                   />
+                  <InputError v-if="errors.github" :label="errors.github" />
                 </div>
                 <div>
                   <Label for="linkedin">Link de Linkedin</Label>
@@ -118,6 +151,7 @@ const handleSubmit = () => {
                     required
                     v-model="form.linkedin"
                   />
+                  <InputError v-if="errors.linkedin" :label="errors.linkedin" />
                 </div>
                 <div>
                   <Label for="twitter">Link de Twitter</Label>
@@ -128,6 +162,7 @@ const handleSubmit = () => {
                     required
                     v-model="form.twitter"
                   />
+                  <InputError v-if="errors.twitter" :label="errors.twitter" />
                 </div>
                 <div>
                   <Label for="company_logo">Logo de la empresa</Label>
@@ -137,6 +172,10 @@ const handleSubmit = () => {
                     pattern="https://.*"
                     required
                     v-model="form.company_logo"
+                  />
+                  <InputError
+                    v-if="errors.company_logo"
+                    :label="errors.company_logo"
                   />
                   <Helper
                     label="Ingresa una URL válida para el logo. Ejemplo: https://example.com/images/myphoto.jpg"
@@ -151,6 +190,10 @@ const handleSubmit = () => {
                     required
                     v-model="form.testimony"
                   ></Textarea>
+                  <InputError
+                    v-if="errors.testimony"
+                    :label="errors.testimony"
+                  />
                 </div>
                 <div class="flex flex-col gap-4 md:flex-row">
                   <Button type="submit" :disabled="loading"
