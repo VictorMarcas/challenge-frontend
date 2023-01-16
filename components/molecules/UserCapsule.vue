@@ -3,7 +3,6 @@ import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
 import SocialButton from '@/components/atoms/SocialButton.vue'
 import Icon from '@/components/atoms/Icon.vue'
 import Button from '@/components/atoms/Button.vue'
-import ButtonLink from '@/components/atoms/ButtonLink.vue'
 import { useUsers } from '@/composables/useUsers'
 defineProps({
   user: {
@@ -19,11 +18,15 @@ const handleDeleteUser = (id) => {
 <template>
   <article class="flex items-center w-full gap-6 p-3 rounded-md bg-gray-100/50">
     <div class="flex items-center flex-1 gap-3">
-      <img
+      <nuxt-img
         loading="lazy"
         :src="user.avatar"
         class="object-cover object-center w-20 border-4 border-white rounded-full aspect-square shrink-0"
         aria-label="profile photo"
+        width="80"
+        height="80"
+        format="webp"
+        fit="cover"
       />
       <div aria-label="description" class="flex-1">
         <h4 class="text-base font-bold text-primary-900">
