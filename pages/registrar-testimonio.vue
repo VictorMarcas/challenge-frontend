@@ -11,16 +11,15 @@ import ButtonLink from '@/components/atoms/ButtonLink.vue'
 import Loading from '@/components/atoms/Loading.vue'
 import { useRouter } from 'vue-router'
 const form = reactive({
-  avatar:
-    'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-  company_logo: 'https://static-talently.s3.amazonaws.com/ml_c64641ebaa.png',
-  name: 'Eduardo',
-  last_name: 'Cardenas Santiago',
-  twitter: 'https://twitter.com/TalentlyTech',
-  linkedin: 'https://www.linkedin.com/school/talentlytech',
-  github: 'https://github.com/Talently-Oficial',
-  profession: 'Fronted Developer',
-  testimony: '1',
+  avatar: '',
+  company_logo: '',
+  name: '',
+  last_name: '',
+  twitter: '',
+  linkedin: '',
+  github: '',
+  profession: '',
+  testimony: '',
 })
 const loading = ref(false)
 const { addUser } = useUsers()
